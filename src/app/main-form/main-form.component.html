@@ -55,7 +55,7 @@
     </div>
 
     <mat-form-field>
-      <textarea matInput placeholder="Comentarios" [disabled]="completed"></textarea>
+      <textarea matInput placeholder="Comentarios" name="comments" [(ngModel)]="formData.comments" [disabled]="completed"></textarea>
     </mat-form-field>
 
     <button *ngIf="(!completed && !success)" type="button" mat-raised-button color="primary" [disabled]="isInvalid()" (click)="handleClick()">Confirmar</button>
