@@ -11,7 +11,11 @@ import {
   MatSelectModule,
   MatButtonModule,
   MatCheckboxModule,
-  MatRadioModule
+  MatRadioModule,
+  MatCardModule,
+  MatNativeDateModule,
+  MatDatepickerModule,
+  MatExpansionModule
 } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -33,6 +37,10 @@ import { MainFormComponent } from './main-form/main-form.component';
     MatButtonModule,
     MatCheckboxModule,
     MatRadioModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatCardModule,
+    MatExpansionModule,
     AppRoutingModule,
   ],
   providers: [],

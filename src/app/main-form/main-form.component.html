@@ -1,10 +1,34 @@
-<div class="example-container">
+<div class="container">
+
+  <mat-accordion>
+    <mat-expansion-panel [expanded]="panelStateOpen" hideToggle="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+            <mat-icon class="card-icon">airplanemode_active</mat-icon>
+            <span>Viaje con nosotros</span>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+
   <mat-form-field>
     <input matInput placeholder="Nombre">
   </mat-form-field>
 
   <mat-form-field>
     <input matInput placeholder="Teléfono">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="Choose a date" (focus)="openCalendar(picker)" (click)="openCalendar(picker)"
+      #elementToFocus [value]="date.value">
+    <mat-datepicker #picker="matDatepicker" (closed)="closeCalendar($event)"></mat-datepicker>
   </mat-form-field>
 
   <mat-form-field>

@@ -7,71 +7,104 @@
 // calculate them. These contrast colors are pulled from the public Material Design spec swatches.
 // While the contrast colors in the spec are not prescriptive, we use them for convenience.
 
-$mat-teal: (
-  50 : #E1F6F6,
-  100 : #B4E8E8,
-  200 : #82D9D9,
-  300 : #4FDACA,
-  400 : #2ABEBE,
-  500 : #04B3B3,
-  600 : #03ACAC,
-  700 : #03A3A3,
-  800 : #029A9A,
-  900 : #018B8B,
-  A100 : #B7FFFF,
-  A200 : #84FFFF,
-  A400 : #51FFFF,
-  A700 : #37FFFF,
-  contrast: (
-    50 : black,
-    100 : black,
-    200 : black,
-    300 : black,
-    400 : black,
-    500 : white,
-    600 : white,
-    700 : white,
-    800 : white,
-    900 : white,
-    A100 : black,
-    A200 : black,
-    A400 : black,
-    A700 : black,
-  )
+$mat-blue: (
+    50 : #e1e7f2,
+    100 : #b5c2de,
+    200 : #839ac8,
+    300 : #5172b1,
+    400 : #2c53a1,
+    500 : #073590,
+    600 : #063088,
+    700 : #05287d,
+    800 : #042273,
+    900 : #021661,
+    A100 : #91a0ff,
+    A200 : #5e74ff,
+    A400 : #2b48ff,
+    A700 : #1232ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #ffffff,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+$mat-yellow: (
+    50 : #fff8e1,
+    100 : #ffecb5,
+    200 : #ffe083,
+    300 : #ffd451,
+    400 : #ffca2c,
+    500 : #ffc107,
+    600 : #ffbb06,
+    700 : #ffb305,
+    800 : #ffab04,
+    900 : #ff9e02,
+    A100 : #ffffff,
+    A200 : #fffaf2,
+    A400 : #ffe4bf,
+    A700 : #ffd9a6,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
 );
 
 
-$mat-blue: (
-  50 : #E2E5E9,
-  100 : #B7BFC7,
-  200 : #8795A2,
-  300 : #576A7C,
-  400 : #334A60,
-  500 : #0F2A44,
-  600 : #0D253E,
-  700 : #0B1F35,
-  800 : #08192D,
-  900 : #040F1F,
-  A100 : #5C92FF,
-  A200 : #2970FF,
-  A400 : #0052F5,
-  A700 : #0049DB,
-  contrast: (
-    50 : #000000,
-    100 : #000000,
-    200 : #000000,
-    300 : #FFFFFF,
-    400 : #FFFFFF,
-    500 : #FFFFFF,
-    600 : #FFFFFF,
-    700 : #FFFFFF,
-    800 : #FFFFFF,
-    900 : #FFFFFF,
-    A100 : #000000,
-    A200 : #FFFFFF,
-    A400 : #FFFFFF,
-    A700 : #FFFFFF,
-  )
+$mat-celeste: (
+    50 : #e5f2fc,
+    100 : #bedef7,
+    200 : #93c8f2,
+    300 : #67b2ec,
+    400 : #47a2e8,
+    500 : #2691e4,
+    600 : #2289e1,
+    700 : #1c7edd,
+    800 : #1774d9,
+    900 : #0d62d1,
+    A100 : #fdfeff,
+    A200 : #cadfff,
+    A400 : #97c0ff,
+    A700 : #7eb0ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
 );
 
 // Background palette for light themes.
@@ -149,8 +182,8 @@ $dark-foreground: (
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. The warn palette is optional (defaults to red).
-$primary: mat-palette($mat-teal);
-$accent:  mat-palette($mat-blue);
+$primary: mat-palette($mat-blue);
+$accent:  mat-palette($mat-yellow);
 $warn:    mat-palette($mat-orange);
 
 // Create the theme object (a Sass map containing all of the palettes).

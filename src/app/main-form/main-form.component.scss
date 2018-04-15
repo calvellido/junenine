@@ -2,11 +2,15 @@
   height: 100%;
 }
 
-.example-container {
+.container {
   display: flex;
   flex-direction: column;
   height: 100%;
   justify-content: space-evenly;
   margin: auto;
   width: 50%;
+}
+
+.card-icon {
+  margin-right: 24px;
 }
