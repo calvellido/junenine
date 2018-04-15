@@ -11,10 +11,11 @@
   left: 0;
   right: 0;
   margin: auto;
-  padding: 16px;
+  padding: 8px;
   width: 90%;
   @media screen and (min-width: 600px) {
     max-width: 600px;
+    padding: 16px;
   }
   color: map-get($mat-celeste, A100);
   font-size: 1.4rem;
@@ -28,7 +29,11 @@
   }
 
   .card-icon {
+    display: none;
     margin: 16px 8px;
+    @media screen and (min-width: 400px) {
+      display: inline-block;
+    }
   }
 }
 
@@ -36,16 +41,23 @@
   background-color: map-get($mat-celeste, 500);
   border: 1px solid map-get($mat-blue, 500);
   position: absolute;
-  width: 90%;
-  @media screen and (min-width: 600px) {
-    max-width: 600px;
-  }
-  top: 33%;
+  width: 70%;
+  top: 100vw;
   left: 0;
   right: 0;
   margin: auto;
-  padding: 16px;
+  padding: 8px;
   border-radius: 8px;
+  @media screen and (min-width: 800px) {
+    width: 90%;
+  }
+  @media screen and (min-width: 600px) {
+    max-width: 600px;
+  }
+  @media screen and (min-width: 400px) {
+    top: 300px;
+    padding: 16px;
+  }
 }
 
 .form-container {
@@ -59,8 +71,9 @@
   width: 80%;
   @media screen and (min-width: 600px) {
     max-width: 600px;
+    padding: 32px;
   }
-  padding: 32px;
+  padding: 16px;
 }
 
 .radio-group {
