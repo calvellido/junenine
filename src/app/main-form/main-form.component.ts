@@ -30,7 +30,7 @@ export class MainFormComponent implements OnInit, AfterViewInit {
     date: '2018-06-09',
     attendance: '',
     bus: '',
-    comments: '',
+    comments: ''
   };
 
   constructor() {}
@@ -105,6 +105,12 @@ export class MainFormComponent implements OnInit, AfterViewInit {
     }
   }
 
+  attendanceChangeHandler(value) {
+    if (value === 'false') {
+      this.formData.bus = 'false';
+    }
+  }
+
   dateChangeHandler(e: Event) {
     this.formData.date = '2018-06-09';
   }
@@ -115,18 +121,24 @@ export class MainFormComponent implements OnInit, AfterViewInit {
   }
 
   isInvalid() {
-    return (this.formData.name === '') ||
-            (this.formData.telephone === '') ||
-            (this.formData.attendance === '') ||
-            (this.formData.bus === '');
+    return (
+      this.formData.name === '' ||
+      this.formData.telephone === '' ||
+      this.formData.attendance === '' ||
+      this.formData.bus === ''
+    );
   }
 
   async handleClick() {
-    const data = (
-      ({ name, telephone, bus, comments }) => ({ name, telephone, bus, comments })
-    )(this.formData);
+    const data = (({ name, telephone, attendance, bus, comments }) => ({
+      name,
+      telephone,
+      attendance,
+      bus,
+      comments
+    }))(this.formData);
 
-    const dbData = await fetch('http://localhost:1337/attendant', {})
+    const dbData = await fetch('http://212.237.26.68:1337/guest', {})
       .then(async function(response) {
         const jsonData = await response.json();
         return jsonData;
@@ -135,41 +147,43 @@ export class MainFormComponent implements OnInit, AfterViewInit {
         console.log('Request failed', error);
       });
 
-      const itemFound = dbData.find(elem => (elem.telephone === data.telephone));
+    const itemFound = dbData.find(elem => elem.telephone === data.telephone);
 
-      if (!itemFound) {
-        this.success = await fetch('http://localhost:1337/attendant', {
-          method: 'post',
-          headers: {
-            'Content-type': 'application/json'
-          },
-          body: JSON.stringify(data)
+    if (!itemFound) {
+      this.success = await fetch('http://212.237.26.68:1337/guest', {
+        method: 'post',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+        .then(function(response) {
+          return true;
         })
-          .then(function(response) {
-            return true;
-          })
-          .catch(function(error) {
-            console.log('Request failed', error);
-            return false;
-          });
-      } else {
-        this.success = await fetch(`http://localhost:1337/attendant/${itemFound.id}`, {
+        .catch(function(error) {
+          console.log('Request failed', error);
+          return false;
+        });
+    } else {
+      this.success = await fetch(
+        `http://212.237.26.68:1337/guest/${itemFound.id}`,
+        {
           method: 'put',
           headers: {
             'Content-type': 'application/json'
           },
           body: JSON.stringify(data)
+        }
+      )
+        .then(response => {
+          this.modified = true;
+          return true;
         })
-          .then((response) => {
-            this.modified = true;
-            return true;
-          })
-          .catch(function(error) {
-            console.log('Request failed', error);
-            return false;
-          });
-      }
-      this.completed = true;
-
+        .catch(function(error) {
+          console.log('Request failed', error);
+          return false;
+        });
+    }
+    this.completed = true;
   }
 }

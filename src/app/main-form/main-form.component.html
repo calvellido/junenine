@@ -40,7 +40,7 @@
 
     <div>
       <label>¿Nos acompañarás el día 9 de junio?</label>
-      <mat-radio-group class="radio-group" name="attendance" [(ngModel)]="formData.attendance" [disabled]="completed">
+      <mat-radio-group class="radio-group" name="attendance" [(ngModel)]="formData.attendance" (ngModelChange)="attendanceChangeHandler($event)" [disabled]="completed">
         <mat-radio-button class="radio-button" value=true>Sí</mat-radio-button>
         <mat-radio-button class="radio-button" value=false>No</mat-radio-button>
       </mat-radio-group>
@@ -48,7 +48,7 @@
 
     <div>
       <label>¿Harás uso del autobús hasta Hacienda Calendaria?</label>
-      <mat-radio-group class="radio-group" name="bus" [(ngModel)]="formData.bus" [disabled]="completed">
+      <mat-radio-group class="radio-group" name="bus" [(ngModel)]="formData.bus" [disabled]="completed || !formData.attendance || (formData.attendance == 'false')">
         <mat-radio-button class="radio-button" value=true>Sí</mat-radio-button>
         <mat-radio-button class="radio-button" value=false>No</mat-radio-button>
       </mat-radio-group>
