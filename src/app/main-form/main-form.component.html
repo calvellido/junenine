@@ -27,37 +27,45 @@
 <div class="container">
   <form class="form-container">
     <mat-form-field>
-      <input matInput placeholder="Nombre">
+      <input matInput placeholder="Nombre" name="name" [(ngModel)]="formData.name" [disabled]="completed">
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput placeholder="Teléfono">
+      <input matInput placeholder="Teléfono" name="telephone" [(ngModel)]="formData.telephone" [disabled]="completed">
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput name="date" type="date" placeholder="Fecha" [(ngModel)]="formData.date" (ngModelChange)="dateChangeHandler($event)">
+      <input matInput name="date" type="date" placeholder="Fecha" [(ngModel)]="formData.date" (ngModelChange)="dateChangeHandler($event)" [disabled]="completed">
     </mat-form-field>
 
     <div>
       <label>¿Nos acompañarás el día 9 de junio?</label>
-      <mat-radio-group class="radio-group">
-        <mat-radio-button class="radio-button" value="yes">Sí</mat-radio-button>
-        <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
+      <mat-radio-group class="radio-group" name="attendance" [(ngModel)]="formData.attendance" [disabled]="completed">
+        <mat-radio-button class="radio-button" value=true>Sí</mat-radio-button>
+        <mat-radio-button class="radio-button" value=false>No</mat-radio-button>
       </mat-radio-group>
     </div>
 
     <div>
       <label>¿Harás uso del autobús hasta Hacienda Calendaria?</label>
-      <mat-radio-group class="radio-group">
-        <mat-radio-button class="radio-button" value="yes">Sí</mat-radio-button>
-        <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
+      <mat-radio-group class="radio-group" name="bus" [(ngModel)]="formData.bus" [disabled]="completed">
+        <mat-radio-button class="radio-button" value=true>Sí</mat-radio-button>
+        <mat-radio-button class="radio-button" value=false>No</mat-radio-button>
       </mat-radio-group>
     </div>
 
     <mat-form-field>
-      <textarea matInput placeholder="Comentarios"></textarea>
+      <textarea matInput placeholder="Comentarios" [disabled]="completed"></textarea>
     </mat-form-field>
 
-    <button type="button" mat-raised-button color="primary">Confirmar</button>
+    <button *ngIf="(!completed && !success)" type="button" mat-raised-button color="primary" [disabled]="isInvalid()" (click)="handleClick()">Confirmar</button>
+    <div *ngIf="(completed && success)">
+      <mat-icon>check</mat-icon>
+      <span>Se ha enviado tu {{ modified ? 'modificación en los datos' : 'confirmación' }}, ¡muchas gracias!</span>
+    </div>
+    <div *ngIf="(completed && !success)">
+      <mat-icon>error</mat-icon>
+      <span>No ha sido posible enviar tu confirmación, inténtalo de nuevo por favor.</span>
+    </div>
   </form>
 </div>

@@ -17,13 +17,20 @@ import { NguCarousel, NguCarouselStore } from '@ngu/carousel';
 })
 export class MainFormComponent implements OnInit, AfterViewInit {
   @ViewChild('elementToFocus') input: ElementRef;
-  panelStateOpen = true;
+  completed = false;
+  success = false;
+  modified = false;
   imgags: string[];
   carouselBanner: NguCarousel;
   carouselBannerItems: Array<any> = [];
 
   formData = {
-    date: '2018-06-09'
+    name: '',
+    telephone: '',
+    date: '2018-06-09',
+    attendance: '',
+    bus: '',
+    comments: '',
   };
 
   constructor() {}
@@ -98,10 +105,71 @@ export class MainFormComponent implements OnInit, AfterViewInit {
     }
   }
 
-  dateChangeHandler(e: Event) {}
+  dateChangeHandler(e: Event) {
+    this.formData.date = '2018-06-09';
+  }
 
   /* It will be triggered on every slide*/
   onmoveFn(data: NguCarouselStore) {
     // console.log(data);
+  }
+
+  isInvalid() {
+    return (this.formData.name === '') ||
+            (this.formData.telephone === '') ||
+            (this.formData.attendance === '') ||
+            (this.formData.bus === '');
+  }
+
+  async handleClick() {
+    const data = (
+      ({ name, telephone, bus, comments }) => ({ name, telephone, bus, comments })
+    )(this.formData);
+
+    const dbData = await fetch('http://localhost:1337/attendant', {})
+      .then(async function(response) {
+        const jsonData = await response.json();
+        return jsonData;
+      })
+      .catch(function(error) {
+        console.log('Request failed', error);
+      });
+
+      const itemFound = dbData.find(elem => (elem.telephone === data.telephone));
+
+      if (!itemFound) {
+        this.success = await fetch('http://localhost:1337/attendant', {
+          method: 'post',
+          headers: {
+            'Content-type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+          .then(function(response) {
+            return true;
+          })
+          .catch(function(error) {
+            console.log('Request failed', error);
+            return false;
+          });
+      } else {
+        this.success = await fetch(`http://localhost:1337/attendant/${itemFound.id}`, {
+          method: 'put',
+          headers: {
+            'Content-type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+          .then((response) => {
+            this.modified = true;
+            return true;
+          })
+          .catch(function(error) {
+            console.log('Request failed', error);
+            return false;
+          });
+      }
+      this.completed = true;
+
   }
 }
