@@ -1,21 +1,24 @@
-<div class="container">
+<form class="container">
 
   <mat-accordion>
     <mat-expansion-panel [expanded]="panelStateOpen" hideToggle="true">
       <mat-expansion-panel-header>
         <mat-panel-title>
             <mat-icon class="card-icon">airplanemode_active</mat-icon>
-            <span>Viaje con nosotros</span>
+            <span>Viaja con nosotros</span>
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          El día 9 de junio nos casamos en la Parroquía Santa María de las Virtudes a las 19 horas.
         </p>
+        <p>
+          A partir de las 21:30 fiestón en Hacienda Candelaria, Espera.
+        </p>
+        <p>¡Os esperamos!</p>
       </div>
     </mat-expansion-panel>
   </mat-accordion>
-
 
   <mat-form-field>
     <input matInput placeholder="Nombre">
@@ -26,26 +29,29 @@
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput [matDatepicker]="picker" placeholder="Choose a date" (focus)="openCalendar(picker)" (click)="openCalendar(picker)"
-      #elementToFocus [value]="date.value">
-    <mat-datepicker #picker="matDatepicker" (closed)="closeCalendar($event)"></mat-datepicker>
+    <input matInput name="date" type="date" placeholder="Fecha" [(ngModel)]="formData.date" (ngModelChange)="dateChangeHandler($event)">
   </mat-form-field>
+
+  <div>
+    <label>¿Nos acompañarás el día 9 de junio?</label>
+    <mat-radio-group class="radio-group">
+      <mat-radio-button class="radio-button" value="always">Sí</mat-radio-button>
+      <mat-radio-button class="radio-button" value="never">No</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <div>
+    <label>¿Harás uso del autobús hasta Hacienda Calendaria?</label>
+    <mat-radio-group class="radio-group">
+      <mat-radio-button class="radio-button" value="always">Sí</mat-radio-button>
+      <mat-radio-button class="radio-button" value="never">No</mat-radio-button>
+    </mat-radio-group>
+  </div>
 
   <mat-form-field>
     <textarea matInput placeholder="Comentarios"></textarea>
   </mat-form-field>
 
-  <mat-form-field>
-    <mat-select placeholder="¿Vas a ir?">
-      <mat-option value="option">Sí</mat-option>
-    </mat-select>
-  </mat-form-field>
+  <button type="button" mat-raised-button color="primary">Confirmar</button>
 
-  <mat-radio-group>
-    <mat-radio-button value="1">Opción 1</mat-radio-button>
-    <mat-radio-button value="2">Opción 2</mat-radio-button>
-  </mat-radio-group>
-
-  <button mat-raised-button color="primary">Confirmar</button>
-
-</div>
+</form>

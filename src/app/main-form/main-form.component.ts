@@ -16,8 +16,12 @@ import { MatDatepicker } from '@angular/material';
 })
 export class MainFormComponent implements OnInit, AfterViewInit {
   @ViewChild('elementToFocus') input: ElementRef;
-  date = new FormControl(new Date());
   panelStateOpen = true;
+
+  formData = {
+    date: '2018-06-09',
+  };
+
   constructor() {}
 
   ngOnInit() {}
@@ -26,12 +30,6 @@ export class MainFormComponent implements OnInit, AfterViewInit {
     // this._input.nativeElement.focus();
   }
 
-  openCalendar(picker: MatDatepicker<Date>) {
-    picker.open();
-    setTimeout(() => this.input.nativeElement.focus());
-  }
+  dateChangeHandler(e: Event) { }
 
-  closeCalendar(e) {
-    setTimeout(() => this.input.nativeElement.blur());
-  }
 }

@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import {
   MatIconModule,
@@ -28,6 +29,7 @@ import { MainFormComponent } from './main-form/main-form.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     MatIconModule,
     MatSidenavModule,
     MatToolbarModule,
