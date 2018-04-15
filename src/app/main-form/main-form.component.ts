@@ -147,7 +147,7 @@ export class MainFormComponent implements OnInit, AfterViewInit {
         console.log('Request failed', error);
       });
 
-    const itemFound = dbData.find(elem => elem.telephone === data.telephone);
+    const itemFound = dbData && dbData.find(elem => elem.telephone === data.telephone);
 
     if (!itemFound) {
       this.success = await fetch('http://212.237.26.68:1337/guest', {
