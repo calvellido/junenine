@@ -3,6 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import {
+  MatIconModule,
   MatSidenavModule,
   MatToolbarModule,
   MatInputModule,
@@ -13,15 +14,17 @@ import {
   MatRadioModule
 } from '@angular/material';
 
-
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MainFormComponent } from './main-form/main-form.component';
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, MainFormComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    MatIconModule,
     MatSidenavModule,
     MatToolbarModule,
     MatInputModule,
@@ -29,7 +32,8 @@ import { AppComponent } from './app.component';
     MatSelectModule,
     MatButtonModule,
     MatCheckboxModule,
-    MatRadioModule
+    MatRadioModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

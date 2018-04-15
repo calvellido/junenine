@@ -1,34 +1,20 @@
-<mat-toolbar class="toolbar">Viajes 9J</mat-toolbar>
-<mat-sidenav-container class="example-container">
-  <mat-sidenav-content>
-    <div style="text-align:center">
-      <div class="example-container">
-        <mat-form-field>
-          <input matInput placeholder="Nombre">
-        </mat-form-field>
+<section class="app mat-typography">
 
-        <mat-form-field>
-          <input matInput placeholder="Teléfono">
-        </mat-form-field>
-      
-        <mat-form-field>
-          <textarea matInput placeholder="Comentarios"></textarea>
-        </mat-form-field>
-      
-        <mat-form-field>
-          <mat-select placeholder="¿Vas a ir?">
-            <mat-option value="option">Aaaaaro!</mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-radio-group>
-          <mat-radio-button value="1">Opción 1</mat-radio-button>
-          <mat-radio-button value="2">Opción 2</mat-radio-button>
-        </mat-radio-group>
-
-        <button mat-raised-button color="primary">Confirmar</button>
-
-      </div>
+  <mat-toolbar color="primary" class="toolbar">
+    <div class="logo-container">
+      <button mat-button class="toolbar-button" routerLink="/">
+        <mat-icon>assessment</mat-icon>
+      </button>
+      <span>Viajes 9J</span>
     </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+    <div class="fill-space"></div>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="sidenav-container">
+
+    <section class="sidenav-content">
+      <router-outlet></router-outlet>
+    </section>
+
+  </mat-sidenav-container>
+</section>
