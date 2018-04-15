@@ -22,6 +22,16 @@
   text-shadow: 0px 0px 8px map-get($mat-blue, 900);
 }
 
+.title {
+  .title-text {
+    display: inline-block;
+  }
+
+  .card-icon {
+    margin: 16px 8px;
+  }
+}
+
 .container {
   background-color: map-get($mat-celeste, 500);
   border: 1px solid map-get($mat-blue, 500);
@@ -51,10 +61,6 @@
     max-width: 600px;
   }
   padding: 32px;
-}
-
-.card-icon {
-  margin-right: 24px;
 }
 
 .radio-group {
@@ -106,5 +112,5 @@
     height: 50px;
     box-shadow: 1px 2px 10px -1px rgba(0, 0, 0, .3);
     border-radius: 999px;
-    right: -20%;
+    left: -20%;
 }
