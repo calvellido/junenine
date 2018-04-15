@@ -1,4 +1,3 @@
-
 import {
   Component,
   OnInit,
@@ -9,6 +8,8 @@ import {
 import { FormControl } from '@angular/forms';
 import { MatDatepicker } from '@angular/material';
 
+import { NguCarousel, NguCarouselStore } from '@ngu/carousel';
+
 @Component({
   selector: 'app-main-form',
   templateUrl: './main-form.component.html',
@@ -17,19 +18,90 @@ import { MatDatepicker } from '@angular/material';
 export class MainFormComponent implements OnInit, AfterViewInit {
   @ViewChild('elementToFocus') input: ElementRef;
   panelStateOpen = true;
+  imgags: string[];
+  carouselBanner: NguCarousel;
+  carouselBannerItems: Array<any> = [];
 
   formData = {
-    date: '2018-06-09',
+    date: '2018-06-09'
   };
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.imgags = [
+      'assets/paris-1.jpg',
+      'assets/roma-1.jpg',
+      'assets/mykonos-1.jpg',
+      'assets/istanbul-1.jpg',
+      'assets/paris-2.jpg',
+      'assets/roma-2.jpg',
+      'assets/mykonos-2.jpg'
+    ];
+
+    this.carouselBanner = {
+      grid: { xs: 1, sm: 1, md: 1, lg: 1, all: 0 },
+      slide: 1,
+      speed: 600,
+      interval: 4000,
+      point: {
+        visible: true,
+        pointStyles: `
+          .ngucarouselPoint {
+            list-style-type: none;
+            text-align: center;
+            padding: 12px;
+            margin: 0;
+            white-space: nowrap;
+            overflow: auto;
+            position: absolute;
+            width: 100%;
+            bottom: 20px;
+            left: 0;
+            box-sizing: border-box;
+          }
+          .ngucarouselPoint li {
+            display: inline-block;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.25);
+            padding: 5px;
+            margin: 0 3px;
+            transition: .4s ease all;
+          }
+          .ngucarouselPoint li.active {
+              background: rgba(255, 255, 255, 0.55);
+              width: 10px;
+          }`
+      },
+      load: 2,
+      custom: 'banner',
+      touch: true,
+      loop: true,
+      easing: 'cubic-bezier(0, 0, 0.2, 1)'
+    };
+
+    this.carouselBannerLoad();
+  }
 
   ngAfterViewInit() {
     // this._input.nativeElement.focus();
   }
 
-  dateChangeHandler(e: Event) { }
+  carouselBannerLoad() {
+    const len = this.carouselBannerItems.length;
+    if (len <= 4) {
+      for (let i = len; i < len + 5; i++) {
+        this.carouselBannerItems.push(
+          this.imgags[Math.floor(Math.random() * this.imgags.length)]
+        );
+      }
+    }
+  }
 
+  dateChangeHandler(e: Event) {}
+
+  /* It will be triggered on every slide*/
+  onmoveFn(data: NguCarouselStore) {
+    // console.log(data);
+  }
 }

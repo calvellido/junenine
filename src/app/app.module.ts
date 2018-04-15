@@ -19,6 +19,9 @@ import {
   MatExpansionModule
 } from '@angular/material';
 
+import { NguCarouselModule } from '@ngu/carousel';
+import 'hammerjs';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainFormComponent } from './main-form/main-form.component';
@@ -44,6 +47,7 @@ import { MainFormComponent } from './main-form/main-form.component';
     MatCardModule,
     MatExpansionModule,
     AppRoutingModule,
+    NguCarouselModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
