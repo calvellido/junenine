@@ -123,9 +123,13 @@ export class MainFormComponent implements OnInit, AfterViewInit {
   isInvalid() {
     return (
       this.formData.name === '' ||
+      this.formData.name.length > 50 ||
       this.formData.telephone === '' ||
+      this.formData.telephone.length < 9 ||
+      this.formData.telephone.length > 15 ||
       this.formData.attendance === '' ||
-      this.formData.bus === ''
+      this.formData.bus === '' ||
+      this.formData.comments.length > 500
     );
   }
 
@@ -140,49 +144,64 @@ export class MainFormComponent implements OnInit, AfterViewInit {
 
     const dbData = await fetch('http://212.237.26.68:1337/guest', {})
       .then(async function(response) {
-        const jsonData = await response.json();
-        return jsonData;
+        if (response.status >= 200 && response.status < 300) {
+          const jsonData = await response.json();
+          return jsonData;
+        } else {
+          throw(response);
+        }
       })
-      .catch(function(error) {
-        console.log('Request failed', error);
+      .catch((error) => {
+        console.warn('Request failed', error);
+        this.completed = true;
       });
-    console.log(dbData);
-    const itemFound = dbData && dbData.find(elem => elem.telephone === data.telephone);
 
-    if (!itemFound) {
-      this.success = await fetch('http://212.237.26.68:1337/guest', {
-        method: 'post',
-        headers: {
-          'Content-type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-        .then(function(response) {
-          return true;
-        })
-        .catch(function(error) {
-          console.log('Request failed', error);
-          return false;
-        });
-    } else {
-      this.success = await fetch(
-        `http://212.237.26.68:1337/guest/${itemFound.id}`,
-        {
-          method: 'put',
+    if (!this.completed) {
+      const itemFound = dbData && dbData.find(elem => elem.telephone === data.telephone);
+
+      if (!itemFound) {
+        this.success = await fetch('http://212.237.26.68:1337/guest', {
+          method: 'post',
           headers: {
             'Content-type': 'application/json'
           },
           body: JSON.stringify(data)
-        }
-      )
-        .then(response => {
-          this.modified = true;
-          return true;
         })
-        .catch(function(error) {
-          console.log('Request failed', error);
-          return false;
-        });
+          .then(function(response) {
+            if (response.status >= 200 && response.status < 300) {
+              return true;
+            } else {
+              throw response;
+            }
+          })
+          .catch(function(error) {
+            console.warn('Request failed', error);
+            return false;
+          });
+      } else {
+        this.success = await fetch(
+          `http://212.237.26.68:1337/guest/${itemFound.id}`,
+          {
+            method: 'put',
+            headers: {
+              'Content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          }
+        )
+          .then(response => {
+            if (response.status >= 200 && response.status < 300) {
+              this.modified = true;
+              return true;
+            } else {
+              throw response;
+            }
+          })
+          .catch(function(error) {
+            console.warn('Request failed', error);
+            return false;
+          });
+      }
     }
     this.completed = true;
   }

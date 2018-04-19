@@ -27,11 +27,14 @@
 <div class="container">
   <form class="form-container">
     <mat-form-field>
-      <input matInput placeholder="Nombre" name="name" [(ngModel)]="formData.name" [disabled]="completed">
+      <input matInput placeholder="Nombre" name="name" pattern=".{1,50}" [(ngModel)]="formData.name" required [disabled]="completed">
+      <mat-error *ngIf="formData.name.length < 1">Campo obligatorio</mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput placeholder="Teléfono" name="telephone" [(ngModel)]="formData.telephone" [disabled]="completed">
+      <input matInput placeholder="Teléfono" name="telephone" pattern=".{9,15}"
+         [(ngModel)]="formData.telephone" required [disabled]="completed">
+      <mat-error *ngIf="formData.telephone.length < 9 || formData.telephone.length > 15">Número de teléfono incorrecto</mat-error>
     </mat-form-field>
 
     <mat-form-field>
@@ -55,7 +58,10 @@
     </div>
 
     <mat-form-field>
-      <textarea matInput placeholder="Comentarios" name="comments" [(ngModel)]="formData.comments" [disabled]="completed"></textarea>
+      <textarea matInput placeholder="Comentarios" name="comments" pattern=".{0,500}"
+          [(ngModel)]="formData.comments" [disabled]="completed"
+          matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="8">
+      </textarea>
     </mat-form-field>
 
     <button *ngIf="(!completed && !success)" type="button" mat-raised-button color="primary" [disabled]="isInvalid()" (click)="handleClick()">Confirmar</button>
