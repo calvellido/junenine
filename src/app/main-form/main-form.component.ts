@@ -43,7 +43,8 @@ export class MainFormComponent implements OnInit, AfterViewInit {
       'assets/istanbul-1.jpg',
       'assets/paris-2.jpg',
       'assets/roma-2.jpg',
-      'assets/mykonos-2.jpg'
+      'assets/mykonos-2.jpg',
+      'assets/foto.jpg'
     ];
 
     this.carouselBanner = {
