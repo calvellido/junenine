@@ -61,19 +61,45 @@
 }
 
 .form-container {
-  background-color: map-get($mat-celeste, A100);
+  background: map-get($mat-celeste, A100);
   border-radius: 8px;
   display: flex;
   flex-direction: column;
+  font-size: 1.1rem;
   height: 600px;
   justify-content: space-evenly;
   margin: auto;
+  position: relative;
   width: 80%;
   @media screen and (min-width: 600px) {
     max-width: 600px;
     padding: 32px;
   }
   padding: 16px;
+  z-index: 2;
+}
+
+.form-container::before {
+  background: url('/assets/plane-stamp.svg') no-repeat right bottom;
+  background-size: contain;
+  content: '';
+  opacity: 0.15;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  pointer-events: none;
+  position: absolute;
+  width: 75%;
+  z-index: 1;   
+}
+
+.confirm-button {
+  font-weight: bold;
+  z-index: 2;
+}
+
+.confirm-button[disabled] {
+  background-color: rgba(200, 200, 200, 0.8);
 }
 
 .radio-group {

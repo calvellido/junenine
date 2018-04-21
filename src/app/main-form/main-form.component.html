@@ -64,7 +64,7 @@
       </textarea>
     </mat-form-field>
 
-    <button *ngIf="(!completed && !success)" type="button" mat-raised-button color="primary" [disabled]="isInvalid()" (click)="handleClick()">Confirmar</button>
+    <button class="confirm-button" *ngIf="(!completed && !success)" type="button" mat-raised-button color="primary" [disabled]="isInvalid()" (click)="handleClick()">Confirmar</button>
     <div *ngIf="(completed && success)">
       <mat-icon>check</mat-icon>
       <span>Se ha enviado tu {{ modified ? 'modificación en los datos' : 'confirmación' }}, ¡muchas gracias!</span>
